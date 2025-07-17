@@ -1,0 +1,78 @@
+using ApiAuthentication.Entity.ViewModels;
+using ApiAuthentication.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ApiAuthentication.Web.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class AuthController(IUserService userService, IJwtTokenService jwtTokenService) : ControllerBase
+{
+    private readonly IUserService _userService = userService;
+    private readonly IJwtTokenService _jwtTokenService = jwtTokenService;
+
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginVM loginVM)
+    {
+        if (loginVM == null)
+        {
+            return BadRequest("Invalid login request");
+        }
+        ApiResponseVM<object> response = await _userService.ValidateCredentialsAsync(loginVM);
+        if (response.StatusCode == 200)
+        {
+            TokenResponseVM tokenResponse = (TokenResponseVM)response.Data;
+            DateTime expirationTime = tokenResponse.RememberMe ? DateTime.UtcNow.AddDays(30) : DateTime.UtcNow.AddDays(7);
+            SetCookie("DemoAccessToken", tokenResponse.AccessToken, expirationTime);
+            SetCookie("DemoRefreshToken", tokenResponse.RefreshToken, expirationTime);
+            return Ok(response);
+        }
+        else
+        {
+            return Unauthorized(response);
+        }
+    }
+
+    [HttpPost("refresh-token")]
+    public async Task<IActionResult> Refresh()
+    {
+        RefreshTokenVM refreshTokenVM = new()
+        {
+            RefreshToken = Request.Cookies["DemoRefreshToken"],
+            RememberMe = Convert.ToBoolean(_jwtTokenService.GetClaimValue(Request.Cookies["DemoRefreshToken"]!, "RememberMe"))
+        };
+        ApiResponseVM<object> response = await _userService.RefreshTokenAsync(refreshTokenVM);
+        if (response.StatusCode == 200)
+        {
+            TokenResponseVM tokenResponse = (TokenResponseVM)response.Data;
+            DateTime expirationTime = tokenResponse.RememberMe ? DateTime.UtcNow.AddDays(30) : DateTime.UtcNow.AddDays(7);
+            SetCookie("DemoAccessToken", tokenResponse.AccessToken, expirationTime);
+            SetCookie("DemoRefreshToken", tokenResponse.RefreshToken, expirationTime);
+            return Ok(response);
+        }
+        else if (response.StatusCode == 400)
+        {
+            return BadRequest(response);
+        }
+        else
+        {
+            return Unauthorized(response);
+        }
+    }
+
+    #region Logout
+    [HttpPost("logout")]
+    #endregion
+
+    private void SetCookie(string name, string value, DateTime expiryTime)
+    {
+        Response.Cookies.Append(name, value, new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = true,
+            SameSite = SameSiteMode.None,
+            Expires = expiryTime
+        });
+    }
+}

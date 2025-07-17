@@ -1,0 +1,17 @@
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\bin\Debug\net8.0\ApiAuthentication.Services.deps.json
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\bin\Debug\net8.0\ApiAuthentication.Services.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\bin\Debug\net8.0\ApiAuthentication.Services.pdb
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\bin\Debug\net8.0\ApiAuthentication.Entity.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\bin\Debug\net8.0\ApiAuthentication.Repositories.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\bin\Debug\net8.0\ApiAuthentication.Entity.pdb
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\bin\Debug\net8.0\ApiAuthentication.Repositories.pdb
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.csproj.AssemblyReference.cache
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.AssemblyInfoInputs.cache
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.AssemblyInfo.cs
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.csproj.CoreCompileInputs.cache
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthe.3AD6C2D0.Up2Date
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\refint\ApiAuthentication.Services.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.pdb
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ref\ApiAuthentication.Services.dll
