@@ -4,5 +4,5 @@ namespace ApiAuthentication.Repositories.Interfaces;
 
 public interface IUserRepository
 {
-    Task<User> ValidateCredentials(string email, string password);
+    Task<FhUser?> GetUserByEmail(string email);
 }

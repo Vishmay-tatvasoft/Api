@@ -17,7 +17,7 @@ public class GenericRepository<T> : IGenericRepository<T>
     }
 
     #region Get Record By ID
-    public async Task<T> GetRecordById(Guid id)
+    public async Task<T?> GetRecordById(Guid id)
     {
         return await _dbSet.FindAsync(id);
     }

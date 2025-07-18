@@ -10,7 +10,7 @@ public class DependencyInjection
     {
         services.AddHttpClient();
 
-        services.AddDbContext<DemoWebApiContext>(options =>
+        services.AddDbContext<TatvasoftFhContext>(options =>
             options.UseNpgsql(connectionString)
         );
         services.AddCors(options =>

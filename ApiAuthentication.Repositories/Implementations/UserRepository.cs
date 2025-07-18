@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiAuthentication.Repositories.Implementations;
 
-public class UserRepository(DemoWebApiContext context) : IUserRepository
+public class UserRepository(TatvasoftFhContext context) : IUserRepository
 {
-    private readonly DemoWebApiContext _context = context;
+    private readonly TatvasoftFhContext _context = context;
 
-    #region Validate Credentials
-    public async Task<User> ValidateCredentials(string email, string password)
+    #region Get User By Email
+    public async Task<FhUser?> GetUserByEmail(string email)
     {
-        return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.HashPassword == password);
+        return await _context.FhUsers.FirstOrDefaultAsync(u => u.EmailAddress == email);
     }
     #endregion
 

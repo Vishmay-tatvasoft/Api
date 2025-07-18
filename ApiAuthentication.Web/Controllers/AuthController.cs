@@ -27,7 +27,7 @@ public class AuthController : ControllerBase
         ApiResponseVM<object> response = await _userService.ValidateCredentialsAsync(loginVM);
         if (response.StatusCode == 200)
         {
-            TokenResponseVM tokenResponse = (TokenResponseVM)response.Data;
+            TokenResponseVM tokenResponse = (TokenResponseVM)response.Data!;
             DateTime expirationTime = tokenResponse.RememberMe ? DateTime.UtcNow.AddDays(30) : DateTime.UtcNow.AddDays(7);
             SetCookie("DemoAccessToken", tokenResponse.AccessToken, expirationTime);
             SetCookie("DemoRefreshToken", tokenResponse.RefreshToken, expirationTime);

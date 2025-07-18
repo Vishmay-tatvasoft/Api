@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {}
+    "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {}
   },
   "projects": {
-    "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
+    "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
+        "projectUniqueName": "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
         "projectName": "ApiAuthentication.Entity",
-        "projectPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
-        "packagesPath": "C:\\Users\\pct113\\.nuget\\packages\\",
-        "outputPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\obj\\",
+        "projectPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
+        "packagesPath": "C:\\Users\\pca118\\.nuget\\packages\\",
+        "outputPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pct113\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\pca118\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -74,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

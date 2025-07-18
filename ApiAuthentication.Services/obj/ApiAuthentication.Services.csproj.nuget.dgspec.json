@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Services\\ApiAuthentication.Services.csproj": {}
+    "D:\\Tatvasoft\\Api\\ApiAuthentication.Services\\ApiAuthentication.Services.csproj": {}
   },
   "projects": {
-    "d:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
+    "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
+        "projectUniqueName": "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
         "projectName": "ApiAuthentication.Entity",
-        "projectPath": "d:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
-        "packagesPath": "C:\\Users\\pct113\\.nuget\\packages\\",
-        "outputPath": "d:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\obj\\",
+        "projectPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
+        "packagesPath": "C:\\Users\\pca118\\.nuget\\packages\\",
+        "outputPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pct113\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\pca118\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -74,21 +78,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj": {
+    "d:\\Tatvasoft\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj",
+        "projectUniqueName": "d:\\Tatvasoft\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj",
         "projectName": "ApiAuthentication.Repositories",
-        "projectPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj",
-        "packagesPath": "C:\\Users\\pct113\\.nuget\\packages\\",
-        "outputPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Repositories\\obj\\",
+        "projectPath": "d:\\Tatvasoft\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj",
+        "packagesPath": "C:\\Users\\pca118\\.nuget\\packages\\",
+        "outputPath": "d:\\Tatvasoft\\Api\\ApiAuthentication.Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pct113\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\pca118\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -100,8 +104,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "d:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
-                "projectPath": "d:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj"
+              "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
+                "projectPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj"
               }
             }
           }
@@ -136,21 +140,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Services\\ApiAuthentication.Services.csproj": {
+    "D:\\Tatvasoft\\Api\\ApiAuthentication.Services\\ApiAuthentication.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Services\\ApiAuthentication.Services.csproj",
+        "projectUniqueName": "D:\\Tatvasoft\\Api\\ApiAuthentication.Services\\ApiAuthentication.Services.csproj",
         "projectName": "ApiAuthentication.Services",
-        "projectPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Services\\ApiAuthentication.Services.csproj",
-        "packagesPath": "C:\\Users\\pct113\\.nuget\\packages\\",
-        "outputPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Services\\obj\\",
+        "projectPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Services\\ApiAuthentication.Services.csproj",
+        "packagesPath": "C:\\Users\\pca118\\.nuget\\packages\\",
+        "outputPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pct113\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\pca118\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -162,11 +166,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "d:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
-                "projectPath": "d:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj"
+              "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
+                "projectPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj"
               },
-              "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj": {
-                "projectPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj"
+              "d:\\Tatvasoft\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj": {
+                "projectPath": "d:\\Tatvasoft\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj"
               }
             }
           }
@@ -186,6 +190,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Isopoh.Cryptography.Argon2": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.4, )"
@@ -207,7 +215,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
