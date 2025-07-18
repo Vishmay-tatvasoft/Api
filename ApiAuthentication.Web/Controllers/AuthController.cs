@@ -6,10 +6,15 @@ namespace ApiAuthentication.Web.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController(IUserService userService, IJwtTokenService jwtTokenService) : ControllerBase
+public class AuthController : ControllerBase
 {
-    private readonly IUserService _userService = userService;
-    private readonly IJwtTokenService _jwtTokenService = jwtTokenService;
+    private readonly IUserService _userService;
+    private readonly IJwtTokenService _jwtTokenService;
+    public AuthController(IUserService userService, IJwtTokenService jwtTokenService)
+    {
+        _userService = userService;
+        _jwtTokenService = jwtTokenService;
+    }
 
 
     [HttpPost("login")]
@@ -40,7 +45,7 @@ public class AuthController(IUserService userService, IJwtTokenService jwtTokenS
         RefreshTokenVM refreshTokenVM = new()
         {
             RefreshToken = Request.Cookies["DemoRefreshToken"],
-            RememberMe = Convert.ToBoolean(_jwtTokenService.GetClaimValue(Request.Cookies["DemoRefreshToken"]!, "RememberMe"))
+            RememberMe = Convert.ToBoolean(_jwtTokenService.GetClaimValue(Request.Cookies["DemoRefreshToken"]!, "RememberMe")),
         };
         ApiResponseVM<object> response = await _userService.RefreshTokenAsync(refreshTokenVM);
         if (response.StatusCode == 200)
@@ -63,6 +68,12 @@ public class AuthController(IUserService userService, IJwtTokenService jwtTokenS
 
     #region Logout
     [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        RemoveCookie("DemoAccessToken");
+        RemoveCookie("DemoRefreshToken");
+        return Ok(new ApiResponseVM<object>(200, "Logged out successfully", null));
+    }
     #endregion
 
     private void SetCookie(string name, string value, DateTime expiryTime)
@@ -73,6 +84,16 @@ public class AuthController(IUserService userService, IJwtTokenService jwtTokenS
             Secure = true,
             SameSite = SameSiteMode.None,
             Expires = expiryTime
+        });
+    }
+
+    private void RemoveCookie(string name)
+    {
+        Response.Cookies.Delete(name, new CookieOptions
+        {
+            Path = "/",
+            Secure = true,
+            SameSite = SameSiteMode.None
         });
     }
 }

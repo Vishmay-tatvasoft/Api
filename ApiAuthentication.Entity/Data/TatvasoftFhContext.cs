@@ -5,35 +5,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiAuthentication.Entity.Data;
 
-public partial class DemoWebApiContext : DbContext
+public partial class TatvasoftFhContext : DbContext
 {
-    public DemoWebApiContext()
+    public TatvasoftFhContext()
     {
     }
 
-    public DemoWebApiContext(DbContextOptions<DemoWebApiContext> options)
+    public TatvasoftFhContext(DbContextOptions<TatvasoftFhContext> options)
         : base(options)
     {
     }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<FhSystem> FhSystems { get; set; }
+
+    public virtual DbSet<FhUser> FhUsers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=DemoWebApi;Username=postgres; password=Tatva@123");
+        => optionsBuilder.UseNpgsql("Host=172.16.10.23;Database=Tatvasoft_FH;Username=parthesh; password=parthesh;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasPostgresExtension("uuid-ossp");
-
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<FhUser>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("users_pkey");
+            entity.HasKey(e => e.UserId).HasName("fh_user_pkey");
 
-            entity.Property(e => e.Id).HasDefaultValueSql("uuid_generate_v4()");
-            entity.Property(e => e.CreatedDate).HasDefaultValueSql("now()");
-            entity.Property(e => e.Isactive).HasDefaultValue(true);
+            entity.Property(e => e.ActiveUserYn).HasDefaultValueSql("'Y'::character varying");
+            entity.Property(e => e.UserType).HasDefaultValueSql("'U'::character varying");
         });
+        modelBuilder.HasSequence("user_suffix_seq");
 
         OnModelCreatingPartial(modelBuilder);
     }

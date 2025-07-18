@@ -10,6 +10,7 @@ D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAut
 D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.AssemblyInfoInputs.cache
 D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.AssemblyInfo.cs
 D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.csproj.CoreCompileInputs.cache
+D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.sourcelink.json
 D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthe.3AD6C2D0.Up2Date
 D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\ApiAuthentication.Services.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Services\obj\Debug\net8.0\refint\ApiAuthentication.Services.dll

@@ -47,7 +47,7 @@ builder.Services.AddAuthentication(options =>
     {
         OnMessageReceived = context =>
         {
-            var accessToken = context.Request.Cookies["Jwt_Token"];
+            var accessToken = context.Request.Cookies["DemoAccessToken"];
             if (!string.IsNullOrEmpty(accessToken))
             {
                 context.Request.Headers["Authorization"] = "Bearer " + accessToken;

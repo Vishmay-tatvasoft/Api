@@ -6,6 +6,7 @@ D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\ApiAuthenti
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\ApiAuthentication.Web.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\ApiAuthentication.Web.pdb
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Humanizer.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -18,6 +19,12 @@ D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.E
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.OpenApi.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Mono.TextTemplating.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Npgsql.dll
@@ -32,6 +39,7 @@ D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\System.Comp
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\System.Composition.Hosting.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\System.Composition.Runtime.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -97,6 +105,7 @@ D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\ApiAuthenti
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\ApiAuthentication.Web.csproj.CoreCompileInputs.cache
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\ApiAuthentication.Web.MvcApplicationPartsAssemblyInfo.cs
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\ApiAuthentication.Web.MvcApplicationPartsAssemblyInfo.cache
+D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\ApiAuthentication.Web.sourcelink.json
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\staticwebassets.build.json
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\staticwebassets.development.json
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\staticwebassets\msbuild.ApiAuthentication.Web.Microsoft.AspNetCore.StaticWebAssets.props
@@ -111,11 +120,3 @@ D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\refint\ApiA
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\ApiAuthentication.Web.pdb
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\ApiAuthentication.Web.genruntimeconfig.cache
 D:\Filehandler_enterprise\Api\ApiAuthentication.Web\obj\Debug\net8.0\ref\ApiAuthentication.Web.dll
-D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
-D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
-D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
-D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
-D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-D:\Filehandler_enterprise\Api\ApiAuthentication.Web\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

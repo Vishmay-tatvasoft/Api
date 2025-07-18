@@ -12,7 +12,6 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
     private readonly IGenericRepository<User> _userGR = userGR;
 
 
-
     #region Validate User Credentials
     public async Task<ApiResponseVM<object>> ValidateCredentialsAsync(LoginVM loginVM)
     {
@@ -40,7 +39,7 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
         if(_jwtTokenService.IsRefreshTokenValid(refreshTokenVM.RefreshToken))
         {
             string userID = _jwtTokenService.GetClaimValue(refreshTokenVM.RefreshToken, "UserID");
-            User user = await _userGR.GetRecordById(userID);
+            User user = await _userGR.GetRecordById(Guid.Parse(userID));
             string newAccessToken = _jwtTokenService.GenerateJwtToken(user.Email, user.Id.ToString(), refreshTokenVM.RememberMe);
             string newRefreshToken = _jwtTokenService.GenerateRefreshTokenJwt(user.Email, user.Id.ToString(), refreshTokenVM.RememberMe);
             return new ApiResponseVM<object>(200, "Token refreshed successfully", new TokenResponseVM{ Email = user.Email, RememberMe = refreshTokenVM.RememberMe, AccessToken = newAccessToken, RefreshToken = newRefreshToken });

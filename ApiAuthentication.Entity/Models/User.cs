@@ -30,6 +30,6 @@ public partial class User
     [Column("modified_date", TypeName = "timestamp without time zone")]
     public DateTime? ModifiedDate { get; set; }
 
-    [InverseProperty("User")]
-    public virtual ICollection<Refreshtoken> Refreshtokens { get; set; } = new List<Refreshtoken>();
+    [Column("refresh_token")]
+    public string? RefreshToken { get; set; }
 }

@@ -1,4 +1,5 @@
 using System.Text.Json;
+using ApiAuthentication.Entity.ViewModels;
 
 namespace ApiAuthentication.Web.Middlewares;
 
@@ -31,15 +32,11 @@ public class GlobalExceptionHandler(RequestDelegate next, ILogger<GlobalExceptio
             _ => StatusCodes.Status500InternalServerError
         };
 
-        var result = JsonSerializer.Serialize(new
-        {
-            error = exception.Message,
-            code = statusCode
-        });
+        ApiResponseVM<object> response = new ApiResponseVM<object>(statusCode, "An error occurred while executing your request! Please try again later", null);
 
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = statusCode;
 
-        return context.Response.WriteAsync(result);
+        return context.Response.WriteAsync(response.ToString());
     }
 }
