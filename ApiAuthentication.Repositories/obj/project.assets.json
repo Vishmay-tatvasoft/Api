@@ -5349,19 +5349,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pca118\\.nuget\\packages\\": {}
+    "C:\\Users\\pct113\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Tatvasoft\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj",
+      "projectUniqueName": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj",
       "projectName": "ApiAuthentication.Repositories",
-      "projectPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj",
-      "packagesPath": "C:\\Users\\pca118\\.nuget\\packages\\",
-      "outputPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Repositories\\obj\\",
+      "projectPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Repositories\\ApiAuthentication.Repositories.csproj",
+      "packagesPath": "C:\\Users\\pct113\\.nuget\\packages\\",
+      "outputPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Repositories\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pca118\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\pct113\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -5373,8 +5373,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
-              "projectPath": "D:\\Tatvasoft\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj"
+            "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
+              "projectPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj"
             }
           }
         }
@@ -5409,7 +5409,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

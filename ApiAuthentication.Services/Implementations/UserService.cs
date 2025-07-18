@@ -7,18 +7,54 @@ using Isopoh.Cryptography.Argon2;
 
 namespace ApiAuthentication.Services.Implementations;
 
-public class UserService(IUserRepository userRepository, IJwtTokenService jwtTokenService, IGenericRepository<User> userGR) : IUserService
+public class UserService(IUserRepository userRepository, IJwtTokenService jwtTokenService, IGenericRepository<FhUser> userGR) : IUserService
 {
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IJwtTokenService _jwtTokenService = jwtTokenService;
-    private readonly IGenericRepository<User> _userGR = userGR;
+    private readonly IGenericRepository<FhUser> _userGR = userGR;
 
+    #region Register User
+    public async Task<ApiResponseVM<object>> RegisterUserAsync(SignupVM signupVM)
+    {
+        if (string.IsNullOrEmpty(signupVM.EmailAddress) || string.IsNullOrEmpty(signupVM.Password))
+        {
+            return new ApiResponseVM<object>(400, Constants.INVALID_SIGNUP_REQUEST, null);
+        }
+
+        FhUser? existingUser = await _userRepository.GetUserByEmail(signupVM.EmailAddress);
+        if (existingUser != null)
+        {
+            return new ApiResponseVM<object>(409, Constants.USER_ALREADY_EXISTS, null);
+        }
+
+        // Encrypt the password before saving
+        string encryptedPassword = Argon2.Hash(signupVM.Password);
+
+        FhUser newUser = new()
+        {
+            EmailAddress = signupVM.EmailAddress,
+            Password = encryptedPassword,
+            FirstName = signupVM.FirstName,
+            LastName = signupVM.LastName,
+            UserName = signupVM.UserName,
+            PhoneNumber = signupVM.PhoneNumber,
+            RoleId = signupVM.RoleId,
+            UserType = signupVM.UserType,
+            UserId = ""
+        };
+
+        await _userGR.AddRecord(newUser);
+        await _userGR.SaveChangesAsync();
+        return new ApiResponseVM<object>(201, Constants.USER_REGISTERED_SUCCESSFULLY, newUser);
+    }
+    #endregion
 
     #region Validate User Credentials
     public async Task<ApiResponseVM<object>> ValidateCredentialsAsync(LoginVM loginVM)
     {
         FhUser? user = await _userRepository.GetUserByEmail(loginVM.Email);
-        if (user == null || Argon2.Verify(loginVM.Password, user.Password))// encrypted password verification here
+        bool res = Argon2.Verify(user.Password, loginVM.Password);
+        if (user == null || !Argon2.Verify(user.Password, loginVM.Password)) // encrypted password verification here
         {
             return new ApiResponseVM<object>(401, Constants.INVALID_CREDENTIALS, null);
         }
@@ -41,12 +77,12 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
         if (_jwtTokenService.IsRefreshTokenValid(refreshTokenVM.RefreshToken))
         {
             string userID = _jwtTokenService.GetClaimValue(refreshTokenVM.RefreshToken, "UserID");
-            User? user = await _userGR.GetRecordById(Guid.Parse(userID)) ?? null;
+            FhUser? user = await _userGR.GetRecordById(userID);
             if (user != null)
             {
-                string newAccessToken = _jwtTokenService.GenerateJwtToken(user.Email, user.Id.ToString(), refreshTokenVM.RememberMe);
-                string newRefreshToken = _jwtTokenService.GenerateRefreshTokenJwt(user.Email, user.Id.ToString(), refreshTokenVM.RememberMe);
-                return new ApiResponseVM<object>(200, Constants.TOKEN_REFRESHED, new TokenResponseVM { Email = user.Email, RememberMe = refreshTokenVM.RememberMe, AccessToken = newAccessToken, RefreshToken = newRefreshToken });
+                string newAccessToken = _jwtTokenService.GenerateJwtToken(user.EmailAddress, user.UserId.ToString(), refreshTokenVM.RememberMe);
+                string newRefreshToken = _jwtTokenService.GenerateRefreshTokenJwt(user.EmailAddress, user.UserId.ToString(), refreshTokenVM.RememberMe);
+                return new ApiResponseVM<object>(200, Constants.TOKEN_REFRESHED, new TokenResponseVM { Email = user.EmailAddress, RememberMe = refreshTokenVM.RememberMe, AccessToken = newAccessToken, RefreshToken = newRefreshToken });
             }
             return new ApiResponseVM<object>(401, Constants.USER_NOT_EXIST, null);
         }

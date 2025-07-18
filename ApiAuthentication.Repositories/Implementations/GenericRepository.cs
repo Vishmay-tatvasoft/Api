@@ -7,17 +7,17 @@ namespace ApiAuthentication.Repositories.Implementations;
 public class GenericRepository<T> : IGenericRepository<T>
     where T : class
 {
-    protected readonly DemoWebApiContext _context;
+    protected readonly TatvasoftFhContext _context;
     protected readonly DbSet<T> _dbSet;
 
-    public GenericRepository(DemoWebApiContext context)
+    public GenericRepository(TatvasoftFhContext context)
     {
         _context = context;
         _dbSet = context.Set<T>();
     }
 
     #region Get Record By ID
-    public async Task<T?> GetRecordById(Guid id)
+    public async Task<T?> GetRecordById(string id)
     {
         return await _dbSet.FindAsync(id);
     }

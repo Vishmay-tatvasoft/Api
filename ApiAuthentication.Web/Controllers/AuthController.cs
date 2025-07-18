@@ -16,6 +16,27 @@ public class AuthController : ControllerBase
         _jwtTokenService = jwtTokenService;
     }
 
+    [HttpPost("signup")]
+    public async Task<IActionResult> SignUp([FromBody] SignupVM signupVM)
+    {
+        if (signupVM == null)
+        {
+            return BadRequest("Invalid signup request");
+        }
+        ApiResponseVM<object> response = await _userService.RegisterUserAsync(signupVM);
+        if (response.StatusCode == 201)
+        {
+            return Ok(response);
+        }
+        else if (response.StatusCode == 409)
+        {
+            return Conflict(response); // User already exists
+        }
+        else
+        {
+            return BadRequest(response);
+        }
+    }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginVM loginVM)

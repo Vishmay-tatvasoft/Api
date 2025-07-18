@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 
 
 #region DbContext Initialization , Services And Repositories Registration
-var connectionString = builder.Configuration.GetConnectionString("DemoWebApiContext");
+var connectionString = builder.Configuration.GetConnectionString("TatvasoftFhContext");
 DependencyInjection.RegisterServices(builder.Configuration,builder.Services, connectionString!);
 #endregion
 
