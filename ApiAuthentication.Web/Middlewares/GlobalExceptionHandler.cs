@@ -68,7 +68,7 @@ public class GlobalExceptionHandler(RequestDelegate next, ILogger<GlobalExceptio
         }
         catch
         {
-            // Silent catch — avoid logging failure causing another crash
+            // Silent catch — avoid logging failure causing another 
         }
     }
 }
