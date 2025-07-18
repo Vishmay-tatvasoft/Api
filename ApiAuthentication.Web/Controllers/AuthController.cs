@@ -65,13 +65,13 @@ public class AuthController : ControllerBase
     {
         RefreshTokenVM refreshTokenVM = new()
         {
-            RefreshToken = Request.Cookies["DemoRefreshToken"],
+            RefreshToken = Request.Cookies["DemoRefreshToken"]!,
             RememberMe = Convert.ToBoolean(_jwtTokenService.GetClaimValue(Request.Cookies["DemoRefreshToken"]!, "RememberMe")),
         };
         ApiResponseVM<object> response = await _userService.RefreshTokenAsync(refreshTokenVM);
         if (response.StatusCode == 200)
         {
-            TokenResponseVM tokenResponse = (TokenResponseVM)response.Data;
+            TokenResponseVM tokenResponse = (TokenResponseVM)response.Data!;
             DateTime expirationTime = tokenResponse.RememberMe ? DateTime.UtcNow.AddDays(30) : DateTime.UtcNow.AddDays(7);
             SetCookie("DemoAccessToken", tokenResponse.AccessToken, expirationTime);
             SetCookie("DemoRefreshToken", tokenResponse.RefreshToken, expirationTime);

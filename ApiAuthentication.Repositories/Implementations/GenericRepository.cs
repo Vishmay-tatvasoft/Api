@@ -31,7 +31,7 @@ public class GenericRepository<T> : IGenericRepository<T>
     #endregion
 
     #region Update Record
-    public async void UpdateRecord(T entity)
+    public void UpdateRecord(T entity)
     {
         _dbSet.Update(entity);
     }

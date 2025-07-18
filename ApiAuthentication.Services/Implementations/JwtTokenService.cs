@@ -17,7 +17,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
     #endregion
 
     #region Generate JWT Token
-    public string GenerateJwtToken(string email, string userID, bool rememberMe)
+    public string GenerateJwtToken(string userName, string userID, bool rememberMe)
     {
         JwtSecurityTokenHandler tokenHandler = new();
         byte[] key = Encoding.UTF8.GetBytes(_key);
@@ -26,7 +26,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
         {
             Subject = new ClaimsIdentity(new[]
             {
-                        new Claim("Email", email),
+                        new Claim("UserName", userName),
                         new Claim("UserID",userID),
                         new Claim(ClaimTypes.NameIdentifier,userID.ToString()),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
@@ -50,7 +50,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
     #endregion
 
     #region Generate Referesh Toke
-    public string GenerateRefreshTokenJwt(string email, string userID, bool rememberMe)
+    public string GenerateRefreshTokenJwt(string userName, string userID, bool rememberMe)
     {
         JwtSecurityTokenHandler tokenHandler = new();
         byte[] key = Encoding.UTF8.GetBytes(_key);
@@ -60,7 +60,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
         {
             Subject = new ClaimsIdentity(new[]
             {
-                        new Claim("Email", email),
+                        new Claim("UserName", userName),
                         new Claim("UserID",userID),
                         new Claim("RememberMe",rememberMe.ToString()),
                         new Claim(ClaimTypes.NameIdentifier,userID.ToString()),

@@ -16,12 +16,12 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
     #region Register User
     public async Task<ApiResponseVM<object>> RegisterUserAsync(SignupVM signupVM)
     {
-        if (string.IsNullOrEmpty(signupVM.EmailAddress) || string.IsNullOrEmpty(signupVM.Password))
+        if (string.IsNullOrEmpty(signupVM.UserName) || string.IsNullOrEmpty(signupVM.Password))
         {
             return new ApiResponseVM<object>(400, Constants.INVALID_SIGNUP_REQUEST, null);
         }
 
-        FhUser? existingUser = await _userRepository.GetUserByEmail(signupVM.EmailAddress);
+        FhUser? existingUser = await _userRepository.GetUserByUsername(signupVM.UserName);
         if (existingUser != null)
         {
             return new ApiResponseVM<object>(409, Constants.USER_ALREADY_EXISTS, null);
@@ -52,17 +52,17 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
     #region Validate User Credentials
     public async Task<ApiResponseVM<object>> ValidateCredentialsAsync(LoginVM loginVM)
     {
-        FhUser? user = await _userRepository.GetUserByEmail(loginVM.Email);
-        bool res = Argon2.Verify(user.Password, loginVM.Password);
+        FhUser? user = await _userRepository.GetUserByUsername(loginVM.UserName);
+        
         if (user == null || !Argon2.Verify(user.Password, loginVM.Password)) // encrypted password verification here
         {
             return new ApiResponseVM<object>(401, Constants.INVALID_CREDENTIALS, null);
         }
         else
         {
-            string accessToken = _jwtTokenService.GenerateJwtToken(loginVM.Email, user.UserId.ToString(), loginVM.RememberMe);
-            string refreshToken = _jwtTokenService.GenerateRefreshTokenJwt(loginVM.Email, user.UserId.ToString(), loginVM.RememberMe);
-            return new ApiResponseVM<object>(200, string.Concat(Constants.LOGIN, Constants.SUCCESSFULLY), new TokenResponseVM { Email = loginVM.Email, RememberMe = loginVM.RememberMe, AccessToken = accessToken, RefreshToken = refreshToken });
+            string accessToken = _jwtTokenService.GenerateJwtToken(loginVM.UserName, user.UserId.ToString(), loginVM.RememberMe);
+            string refreshToken = _jwtTokenService.GenerateRefreshTokenJwt(loginVM.UserName, user.UserId.ToString(), loginVM.RememberMe);
+            return new ApiResponseVM<object>(200, string.Concat(Constants.LOGIN, Constants.SUCCESSFULLY), new TokenResponseVM { UserName = loginVM.UserName, RememberMe = loginVM.RememberMe, AccessToken = accessToken, RefreshToken = refreshToken });
         }
     }
     #endregion
@@ -80,9 +80,9 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
             FhUser? user = await _userGR.GetRecordById(userID);
             if (user != null)
             {
-                string newAccessToken = _jwtTokenService.GenerateJwtToken(user.EmailAddress, user.UserId.ToString(), refreshTokenVM.RememberMe);
-                string newRefreshToken = _jwtTokenService.GenerateRefreshTokenJwt(user.EmailAddress, user.UserId.ToString(), refreshTokenVM.RememberMe);
-                return new ApiResponseVM<object>(200, Constants.TOKEN_REFRESHED, new TokenResponseVM { Email = user.EmailAddress, RememberMe = refreshTokenVM.RememberMe, AccessToken = newAccessToken, RefreshToken = newRefreshToken });
+                string newAccessToken = _jwtTokenService.GenerateJwtToken(user.EmailAddress!, user.UserId.ToString(), refreshTokenVM.RememberMe);
+                string newRefreshToken = _jwtTokenService.GenerateRefreshTokenJwt(user.EmailAddress!, user.UserId.ToString(), refreshTokenVM.RememberMe);
+                return new ApiResponseVM<object>(200, Constants.TOKEN_REFRESHED, new TokenResponseVM { UserName = user.UserName, RememberMe = refreshTokenVM.RememberMe, AccessToken = newAccessToken, RefreshToken = newRefreshToken });
             }
             return new ApiResponseVM<object>(401, Constants.USER_NOT_EXIST, null);
         }
