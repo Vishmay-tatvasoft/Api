@@ -53,7 +53,7 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
     public async Task<ApiResponseVM<object>> ValidateCredentialsAsync(LoginVM loginVM)
     {
         FhUser? user = await _userRepository.GetUserByUsername(loginVM.UserName);
-        
+
         if (user == null || !Argon2.Verify(user.Password, loginVM.Password)) // encrypted password verification here
         {
             return new ApiResponseVM<object>(401, Constants.INVALID_CREDENTIALS, null);
@@ -80,8 +80,8 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
             FhUser? user = await _userGR.GetRecordById(userID);
             if (user != null)
             {
-                string newAccessToken = _jwtTokenService.GenerateJwtToken(user.EmailAddress!, user.UserId.ToString(), refreshTokenVM.RememberMe);
-                string newRefreshToken = _jwtTokenService.GenerateRefreshTokenJwt(user.EmailAddress!, user.UserId.ToString(), refreshTokenVM.RememberMe);
+                string newAccessToken = _jwtTokenService.GenerateJwtToken(user.UserName!, user.UserId.ToString(), refreshTokenVM.RememberMe);
+                string newRefreshToken = _jwtTokenService.GenerateRefreshTokenJwt(user.UserName!, user.UserId.ToString(), refreshTokenVM.RememberMe);
                 return new ApiResponseVM<object>(200, Constants.TOKEN_REFRESHED, new TokenResponseVM { UserName = user.UserName, RememberMe = refreshTokenVM.RememberMe, AccessToken = newAccessToken, RefreshToken = newRefreshToken });
             }
             return new ApiResponseVM<object>(401, Constants.USER_NOT_EXIST, null);
@@ -89,4 +89,19 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
         return new ApiResponseVM<object>(401, Constants.INVALID_REFRESH_TOKEN, null);
     }
     #endregion
+
+    #region GetUserByUserNameAsync
+    public async Task<ApiResponseVM<object>> GetUserByUserNameAsync(string userName)
+    {
+        FhUser? user = await _userRepository.GetUserByUsername(userName);
+        if(user == null){
+            return new ApiResponseVM<object>(404, Constants.USER_NOT_FOUND, null);
+        }
+        else
+        {
+            return new ApiResponseVM<object>(200, Constants.USER_FOUND, user);
+        }
+    }
+    #endregion
+
 }
