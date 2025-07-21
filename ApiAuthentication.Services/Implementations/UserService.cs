@@ -19,7 +19,7 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
     #region Register User
     public async Task<ApiResponseVM<object>> RegisterUserAsync(SignupVM signupVM)
     {
-        if (string.IsNullOrEmpty(signupVM.UserName) || string.IsNullOrEmpty(signupVM.Password))
+        if (string.IsNullOrEmpty(signupVM.UserName) || string.IsNullOrEmpty(signupVM.FirstName) || string.IsNullOrEmpty(signupVM.LastName) || string.IsNullOrEmpty(signupVM.RoleId))
         {
             return new ApiResponseVM<object>(400, Constants.INVALID_SIGNUP_REQUEST, null);
         }
@@ -30,24 +30,24 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
             return new ApiResponseVM<object>(409, Constants.USER_ALREADY_EXISTS, null);
         }
 
-        // Encrypt the password before saving
-        string encryptedPassword = Argon2.Hash(signupVM.Password);
+        // OTP
+        string otp = OneTimePasswordGenerator.GenerateAlphaNumericOtp();
+        string hashedOtp = Argon2.Hash(otp);
 
         FhUser newUser = new()
         {
-            EmailAddress = signupVM.EmailAddress,
-            Password = encryptedPassword,
+            Password = hashedOtp,
             FirstName = signupVM.FirstName,
             LastName = signupVM.LastName,
             UserName = signupVM.UserName,
-            PhoneNumber = signupVM.PhoneNumber,
             RoleId = signupVM.RoleId,
-            UserType = signupVM.UserType,
+            UserType = signupVM.RoleId == "User" ? "U" : "R",
             UserId = ""
         };
 
         await _userGR.AddRecord(newUser);
         await _userGR.SaveChangesAsync();
+        await _mailService.SendOtpEmail(signupVM.EmailAddress, signupVM.UserName, otp);
         return new ApiResponseVM<object>(201, Constants.USER_REGISTERED_SUCCESSFULLY, newUser);
     }
     #endregion
@@ -137,6 +137,7 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
                     _userGR.UpdateRecord(user);
                     await _userGR.SaveChangesAsync();
                     _memoryCache.Remove(cacheKey); //allow for one time only
+                    await _mailService.SendResetPasswordMessage(user.EmailAddress, user.UserName);
                     return new ApiResponseVM<object>(200, string.Join(" ", Constants.PASSWORD, Constants.RESET, Constants.SUCCESSFULLY), null);
                 }
                 else

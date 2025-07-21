@@ -1,4 +1,4 @@
-D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Repositories.deps.json
+d:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Repositories.deps.json
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Repositories.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Repositories.pdb
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Entity.dll
@@ -9,8 +9,8 @@ D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\Ap
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.AssemblyInfo.cs
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.csproj.CoreCompileInputs.cache
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.sourcelink.json
-D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthe.4B2B0351.Up2Date
+d:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthe.4B2B0351.Up2Date
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\refint\ApiAuthentication.Repositories.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.pdb
-D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ref\ApiAuthentication.Repositories.dll
+d:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ref\ApiAuthentication.Repositories.dll

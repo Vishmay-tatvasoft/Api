@@ -42,7 +42,17 @@ public class MailService(IConfiguration config) : IMailService
         return await File.ReadAllTextAsync(templatePath);
     }
 
-    #region Reset Password Link
+    #region OTP
+    public async Task SendOtpEmail(string email, string username, string otp)
+    {
+        string emailBody = await GetEmailBodyAsync("OneTimePassword.html");
+        emailBody = emailBody.Replace("{{otp}}", otp);
+        emailBody = emailBody.Replace("{{username}}", username);
+        await SendEmail(email, emailBody);
+    }
+    #endregion
+
+    #region Reset Password
     public async Task SendResetPasswordLink(string email, string username, string token)
     {
         string url = _config.GetValue<string>("RequestURL:Angular")! + $"/ResetPassword?token={Uri.EscapeDataString(token)}";
@@ -51,5 +61,16 @@ public class MailService(IConfiguration config) : IMailService
         emailBody = emailBody.Replace("{{username}}", username);
         await SendEmail(email, emailBody);
     }
+ 
+    public async Task SendResetPasswordMessage(string? emailAddress, string username)
+    {
+        if (emailAddress != null)
+        {
+            string emailBody = await GetEmailBodyAsync("PasswordChanged.html");
+            emailBody = emailBody.Replace("{{username}}", username);
+            await SendEmail(emailAddress, emailBody);
+        }
+    }
+ 
     #endregion
 }
