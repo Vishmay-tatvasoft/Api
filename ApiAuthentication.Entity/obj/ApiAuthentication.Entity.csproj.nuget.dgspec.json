@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {}
+    "d:\\FH_Angular_Demo\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {}
   },
   "projects": {
-    "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
+    "d:\\FH_Angular_Demo\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
+        "projectUniqueName": "d:\\FH_Angular_Demo\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
         "projectName": "ApiAuthentication.Entity",
-        "projectPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
-        "packagesPath": "C:\\Users\\pct113\\.nuget\\packages\\",
-        "outputPath": "D:\\Filehandler_enterprise\\Api\\ApiAuthentication.Entity\\obj\\",
+        "projectPath": "d:\\FH_Angular_Demo\\Api\\ApiAuthentication.Entity\\ApiAuthentication.Entity.csproj",
+        "packagesPath": "C:\\Users\\pci217\\.nuget\\packages\\",
+        "outputPath": "d:\\FH_Angular_Demo\\Api\\ApiAuthentication.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pct113\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\pci217\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

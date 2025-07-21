@@ -39,6 +39,24 @@ public class AuthController : ControllerBase
         }
     }
 
+    [HttpGet("check-user")]
+    public async Task<IActionResult> GetUserByUserName(string userName)
+    {
+        ApiResponseVM<object> response = await _userService.GetUserByUserNameAsync(userName);
+        if (response.StatusCode == 200)
+        {
+            return Ok(response);
+        }
+        else if (response.StatusCode == 404)
+        {
+            return NotFound(response);
+        }
+        else
+        {
+            return BadRequest(response);
+        }
+    }
+
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginVM loginVM)
     {
@@ -59,6 +77,44 @@ public class AuthController : ControllerBase
         {
             return Unauthorized(response);
         }
+    }
+
+    [HttpGet("validate-refresh-token")]
+    public async Task<IActionResult> ValidateToken()
+    {
+        var refreshToken = Request.Cookies["DemoRefreshToken"]!;
+        if(refreshToken == null){
+            return Unauthorized(new ApiResponseVM<object>(401, "No token present", null));
+        }
+        bool rememberMe = Convert.ToBoolean(_jwtTokenService.GetClaimValue(refreshToken, "RememberMe"));
+
+        if (rememberMe)
+        {
+            RefreshTokenVM refreshTokenVM = new()
+            {
+                RefreshToken = refreshToken,
+                RememberMe = rememberMe,
+            };
+            ApiResponseVM<object> response = await _userService.RefreshTokenAsync(refreshTokenVM);
+            if (response.StatusCode == 200)
+            {
+                TokenResponseVM tokenResponse = (TokenResponseVM)response.Data!;
+                DateTime expirationTime = tokenResponse.RememberMe ? DateTime.UtcNow.AddDays(30) : DateTime.UtcNow.AddDays(7);
+                SetCookie("DemoAccessToken", tokenResponse.AccessToken, expirationTime);
+                SetCookie("DemoRefreshToken", tokenResponse.RefreshToken, expirationTime);
+                return Ok(response);
+            }
+            else if (response.StatusCode == 400)
+            {
+                return BadRequest(response);
+            }
+            else
+            {
+                return Unauthorized(response);
+            }
+        }
+
+        return Unauthorized(new ApiResponseVM<object>(401, "Invalid or expired refresh token", null));
     }
 
     [HttpPost("refresh-token")]

@@ -13,4 +13,24 @@ d:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\Ap
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\refint\ApiAuthentication.Repositories.dll
 D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.pdb
+<<<<<<< HEAD
 d:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ref\ApiAuthentication.Repositories.dll
+=======
+D:\Filehandler_enterprise\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ref\ApiAuthentication.Repositories.dll
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Repositories.deps.json
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Repositories.dll
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Repositories.pdb
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Entity.dll
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\bin\Debug\net8.0\ApiAuthentication.Entity.pdb
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.csproj.AssemblyReference.cache
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.AssemblyInfoInputs.cache
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.AssemblyInfo.cs
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.csproj.CoreCompileInputs.cache
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.sourcelink.json
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthe.4B2B0351.Up2Date
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.dll
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\refint\ApiAuthentication.Repositories.dll
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ApiAuthentication.Repositories.pdb
+D:\FH_Angular_Demo\Api\ApiAuthentication.Repositories\obj\Debug\net8.0\ref\ApiAuthentication.Repositories.dll
+>>>>>>> 65e10f7d343ad97dc1d1e7d2c7c00d04e8343e10

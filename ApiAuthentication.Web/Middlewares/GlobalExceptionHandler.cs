@@ -11,7 +11,6 @@ public class GlobalExceptionHandler(RequestDelegate next, ILogger<GlobalExceptio
 
     private readonly string _logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", "Exception");
 
-
     public async Task InvokeAsync(HttpContext context)
     {
         try
