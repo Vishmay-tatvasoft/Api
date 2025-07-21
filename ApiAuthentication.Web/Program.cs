@@ -2,6 +2,7 @@ using System.Security.Claims;
 using System.Text;
 using ApiAuthentication.Web;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -12,11 +13,26 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddMemoryCache();
+
+//Invalid Model Handling
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+{
+    return new BadRequestObjectResult(new
+    {
+        status = 400,
+        message = "Invalid request body."
+    });
+};
+
+});
 
 
 #region DbContext Initialization , Services And Repositories Registration
 var connectionString = builder.Configuration.GetConnectionString("TatvasoftFhContext");
-DependencyInjection.RegisterServices(builder.Configuration,builder.Services, connectionString!);
+DependencyInjection.RegisterServices(builder.Configuration, builder.Services, connectionString!);
 #endregion
 
 #region JWT Authentication
@@ -69,6 +85,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 #endregion
+
 
 var app = builder.Build();
 

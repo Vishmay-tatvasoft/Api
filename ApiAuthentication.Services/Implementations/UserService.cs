@@ -4,14 +4,17 @@ using ApiAuthentication.Entity.ViewModels;
 using ApiAuthentication.Repositories.Interfaces;
 using ApiAuthentication.Services.Interfaces;
 using Isopoh.Cryptography.Argon2;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ApiAuthentication.Services.Implementations;
 
-public class UserService(IUserRepository userRepository, IJwtTokenService jwtTokenService, IGenericRepository<FhUser> userGR) : IUserService
+public class UserService(IUserRepository userRepository, IJwtTokenService jwtTokenService, IMailService mailService, IMemoryCache memoryCache, IGenericRepository<FhUser> userGR) : IUserService
 {
     private readonly IUserRepository _userRepository = userRepository;
     private readonly IJwtTokenService _jwtTokenService = jwtTokenService;
     private readonly IGenericRepository<FhUser> _userGR = userGR;
+    private readonly IMailService _mailService = mailService;
+    private readonly IMemoryCache _memoryCache = memoryCache;
 
     #region Register User
     public async Task<ApiResponseVM<object>> RegisterUserAsync(SignupVM signupVM)
@@ -53,8 +56,12 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
     public async Task<ApiResponseVM<object>> ValidateCredentialsAsync(LoginVM loginVM)
     {
         FhUser? user = await _userRepository.GetUserByUsername(loginVM.UserName);
-        
-        if (user == null || !Argon2.Verify(user.Password, loginVM.Password)) // encrypted password verification here
+
+        if (user == null)
+        {
+            return new ApiResponseVM<object>(404, Constants.USER_NOT_EXIST, null);
+        }
+        else if (!Argon2.Verify(user.Password, loginVM.Password)) // encrypted password verification here
         {
             return new ApiResponseVM<object>(401, Constants.INVALID_CREDENTIALS, null);
         }
@@ -87,6 +94,58 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
             return new ApiResponseVM<object>(401, Constants.USER_NOT_EXIST, null);
         }
         return new ApiResponseVM<object>(401, Constants.INVALID_REFRESH_TOKEN, null);
+    }
+    #endregion
+
+    #region Forgot Password
+    public async Task<ApiResponseVM<object>> ForgotPasswordAsync(string email, string username)
+    {
+        FhUser? user = await _userRepository.GetUserByUsername(username);
+        if (user == null || string.IsNullOrEmpty(user.EmailAddress))
+        {
+            return new ApiResponseVM<object>(404, Constants.USER_NOT_EXIST, null);
+        }
+        else if (user.EmailAddress != email.ToLower())
+        {
+            return new ApiResponseVM<object>(400, Constants.INVALID_EMAIL, null);
+        }
+        else
+        {
+            string resetToken = _jwtTokenService.GenerateJwtToken(user.UserName, user.UserId, false);
+            string cacheKey = $"reset_token:{resetToken}";
+            _memoryCache.Set(cacheKey, user.EmailAddress.ToLower(), TimeSpan.FromMinutes(15)); // auto-expiry
+            await _mailService.SendResetPasswordLink(user.EmailAddress, user.UserName, resetToken);
+            return new ApiResponseVM<object>(200, Constants.RESET_LINK_SENT, null);
+        }
+    }
+    #endregion
+
+    #region Reset Password
+    public async Task<ApiResponseVM<object>> ResetPasswordAsync(ResetPassVM resetPassVM)
+    {
+        string cacheKey = $"reset_token:{resetPassVM.Token}";
+
+        if (_memoryCache.TryGetValue(cacheKey, out string? email))
+        {
+            if (_jwtTokenService.IsRefreshTokenValid(resetPassVM.Token))
+            {
+                string userID = _jwtTokenService.GetClaimValue(resetPassVM.Token, "UserID");
+                FhUser? user = await userGR.GetRecordById(userID);
+                if (user != null)
+                {
+                    user.Password = Argon2.Hash(resetPassVM.Password);
+                    _userGR.UpdateRecord(user);
+                    await _userGR.SaveChangesAsync();
+                    _memoryCache.Remove(cacheKey); //allow for one time only
+                    return new ApiResponseVM<object>(200, string.Join(" ", Constants.PASSWORD, Constants.RESET, Constants.SUCCESSFULLY), null);
+                }
+                else
+                {
+                    return new ApiResponseVM<object>(404, Constants.USER_NOT_EXIST, null);
+                }
+            }
+        }
+        return new ApiResponseVM<object>(410, Constants.INVALID_LINK, null);
     }
     #endregion
 }
