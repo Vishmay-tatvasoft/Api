@@ -57,11 +57,15 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
     {
         FhUser? user = await _userRepository.GetUserByUsername(loginVM.UserName);
 
+<<<<<<< HEAD
         if (user == null)
         {
             return new ApiResponseVM<object>(404, Constants.USER_NOT_EXIST, null);
         }
         else if (!Argon2.Verify(user.Password, loginVM.Password)) // encrypted password verification here
+=======
+        if (user == null || !Argon2.Verify(user.Password, loginVM.Password)) // encrypted password verification here
+>>>>>>> 65e10f7d343ad97dc1d1e7d2c7c00d04e8343e10
         {
             return new ApiResponseVM<object>(401, Constants.INVALID_CREDENTIALS, null);
         }
@@ -87,8 +91,8 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
             FhUser? user = await _userGR.GetRecordById(userID);
             if (user != null)
             {
-                string newAccessToken = _jwtTokenService.GenerateJwtToken(user.EmailAddress!, user.UserId.ToString(), refreshTokenVM.RememberMe);
-                string newRefreshToken = _jwtTokenService.GenerateRefreshTokenJwt(user.EmailAddress!, user.UserId.ToString(), refreshTokenVM.RememberMe);
+                string newAccessToken = _jwtTokenService.GenerateJwtToken(user.UserName!, user.UserId.ToString(), refreshTokenVM.RememberMe);
+                string newRefreshToken = _jwtTokenService.GenerateRefreshTokenJwt(user.UserName!, user.UserId.ToString(), refreshTokenVM.RememberMe);
                 return new ApiResponseVM<object>(200, Constants.TOKEN_REFRESHED, new TokenResponseVM { UserName = user.UserName, RememberMe = refreshTokenVM.RememberMe, AccessToken = newAccessToken, RefreshToken = newRefreshToken });
             }
             return new ApiResponseVM<object>(401, Constants.USER_NOT_EXIST, null);
@@ -97,6 +101,7 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
     }
     #endregion
 
+<<<<<<< HEAD
     #region Forgot Password
     public async Task<ApiResponseVM<object>> ForgotPasswordAsync(string email, string username)
     {
@@ -116,10 +121,23 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
             _memoryCache.Set(cacheKey, user.EmailAddress.ToLower(), TimeSpan.FromMinutes(15)); // auto-expiry
             await _mailService.SendResetPasswordLink(user.EmailAddress, user.UserName, resetToken);
             return new ApiResponseVM<object>(200, Constants.RESET_LINK_SENT, null);
+=======
+    #region GetUserByUserNameAsync
+    public async Task<ApiResponseVM<object>> GetUserByUserNameAsync(string userName)
+    {
+        FhUser? user = await _userRepository.GetUserByUsername(userName);
+        if(user == null){
+            return new ApiResponseVM<object>(404, Constants.USER_NOT_FOUND, null);
+        }
+        else
+        {
+            return new ApiResponseVM<object>(200, Constants.USER_FOUND, user);
+>>>>>>> 65e10f7d343ad97dc1d1e7d2c7c00d04e8343e10
         }
     }
     #endregion
 
+<<<<<<< HEAD
     #region Reset Password
     public async Task<ApiResponseVM<object>> ResetPasswordAsync(ResetPassVM resetPassVM)
     {
@@ -149,4 +167,6 @@ public class UserService(IUserRepository userRepository, IJwtTokenService jwtTok
         return new ApiResponseVM<object>(410, Constants.INVALID_LINK, null);
     }
     #endregion
+=======
+>>>>>>> 65e10f7d343ad97dc1d1e7d2c7c00d04e8343e10
 }

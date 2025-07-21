@@ -81,7 +81,6 @@ builder.Services.AddAuthentication(options =>
             context.Response.StatusCode = 403;
             return context.Response.WriteAsync("Forbidden");
         }
-
     };
 });
 #endregion
@@ -96,8 +95,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseCors("AllowAngular");
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

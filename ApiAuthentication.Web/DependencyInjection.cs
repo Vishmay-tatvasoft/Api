@@ -19,7 +19,8 @@ public class DependencyInjection
                 policy.WithOrigins(configuration.GetValue<string>("RequestURL:Angular")!,
                 configuration.GetValue<string>("RequestURL:AngularSSR")!)
                     .AllowAnyHeader()
-                    .AllowAnyMethod());
+                    .AllowAnyMethod()
+                    .AllowCredentials());
         });
         RegisterImplementations(services, "ApiAuthentication.Repositories");
         RegisterImplementations(services, "ApiAuthentication.Services");

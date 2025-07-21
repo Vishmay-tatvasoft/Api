@@ -144,7 +144,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
         ClaimsPrincipal claimsPrincipal = GetClaimsFromToken(token);
 
         string? value = claimsPrincipal?.FindFirst(claimType)?.Value;
-        return value?? string.Empty;
+        return value ?? string.Empty;
     }
     #endregion
 }
