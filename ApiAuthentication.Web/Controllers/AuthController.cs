@@ -1,3 +1,4 @@
+using ApiAuthentication.Entity.Shared;
 using ApiAuthentication.Entity.ViewModels;
 using ApiAuthentication.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -97,6 +98,52 @@ public class AuthController : ControllerBase
     }
     #endregion
 
+    #region Forgot Password
+    [HttpGet("forgot-password")]
+    public async Task<IActionResult> ForgotPassword(string email, string username)
+    {
+        ApiResponseVM<object> response = await _userService.ForgotPasswordAsync(email, username);
+        if (response.StatusCode == 200)
+        {
+            return Ok(response);
+        }
+        else if (response.StatusCode == 400)
+        {
+            return BadRequest(response);
+        }
+        else
+        {
+            return NotFound(response);
+        }
+
+    }
+    #endregion
+
+    #region Reset Password
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword(ResetPassVM resetPassVM)
+    {
+        if (resetPassVM == null || resetPassVM.Token == string.Empty)
+        {
+            return BadRequest(new ApiResponseVM<object>(400, Constants.INVALID_LINK, null));
+        }
+        ApiResponseVM<object> response = await _userService.ResetPasswordAsync(resetPassVM);
+        if (response.StatusCode == 200)
+        {
+            return Ok(response);
+        }
+        else if (response.StatusCode == 410)
+        {
+            Response.StatusCode = response.StatusCode;
+            return Content(response.Message);
+        }
+        else
+        {
+            return NotFound(response);
+        }
+    }
+    #endregion
+
     private void SetCookie(string name, string value, DateTime expiryTime)
     {
         Response.Cookies.Append(name, value, new CookieOptions
@@ -117,4 +164,5 @@ public class AuthController : ControllerBase
             SameSite = SameSiteMode.None
         });
     }
+
 }
