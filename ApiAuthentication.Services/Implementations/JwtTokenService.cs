@@ -30,10 +30,10 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
                         new Claim("UserID",userID),
                         new Claim(ClaimTypes.NameIdentifier,userID.ToString()),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
+                        new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.Now.ToUnixTimeSeconds().ToString())
                     }),
 
-            Expires = DateTime.UtcNow.AddMinutes(15),
+            Expires = DateTime.Now.AddMinutes(15),
             Issuer = _issuer,
             Audience = _audience,
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256),
@@ -55,7 +55,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
         JwtSecurityTokenHandler tokenHandler = new();
         byte[] key = Encoding.UTF8.GetBytes(_key);
         byte[] encryptKey = Encoding.UTF8.GetBytes(_encryptkey);
-        DateTime expiryTime = rememberMe ? DateTime.UtcNow.AddDays(30) : DateTime.UtcNow.AddHours(2);
+        DateTime expiryTime = rememberMe ? DateTime.Now.AddDays(30) : DateTime.Now.AddHours(2);
         SecurityTokenDescriptor tokenDescriptor = new()
         {
             Subject = new ClaimsIdentity(new[]
@@ -65,7 +65,7 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
                         new Claim("RememberMe",rememberMe.ToString()),
                         new Claim(ClaimTypes.NameIdentifier,userID.ToString()),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
+                        new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.Now.ToUnixTimeSeconds().ToString())
                 }),
 
             Expires = expiryTime,

@@ -49,7 +49,7 @@ public class AuthController : ControllerBase
         if (response.StatusCode == 200)
         {
             TokenResponseVM tokenResponse = (TokenResponseVM)response.Data!;
-            DateTime expirationTime = tokenResponse.RememberMe ? DateTime.UtcNow.AddDays(30) : DateTime.UtcNow.AddDays(7);
+            DateTime expirationTime = tokenResponse.RememberMe ? DateTime.Now.AddDays(30) : DateTime.Now.AddDays(7);
             SetCookie("DemoAccessToken", tokenResponse.AccessToken, expirationTime);
             SetCookie("DemoRefreshToken", tokenResponse.RefreshToken, expirationTime);
             return Ok(response);
@@ -72,7 +72,7 @@ public class AuthController : ControllerBase
         if (response.StatusCode == 200)
         {
             TokenResponseVM tokenResponse = (TokenResponseVM)response.Data!;
-            DateTime expirationTime = tokenResponse.RememberMe ? DateTime.UtcNow.AddDays(30) : DateTime.UtcNow.AddDays(7);
+            DateTime expirationTime = tokenResponse.RememberMe ? DateTime.Now.AddDays(30) : DateTime.Now.AddDays(7);
             SetCookie("DemoAccessToken", tokenResponse.AccessToken, expirationTime);
             SetCookie("DemoRefreshToken", tokenResponse.RefreshToken, expirationTime);
             return Ok(response);
